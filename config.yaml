@@ -1,0 +1,3 @@
+install_dependencies: false
+vectorizer_exist: false
+minimize_dataset: true
