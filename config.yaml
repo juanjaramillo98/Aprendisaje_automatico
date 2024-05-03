@@ -1,4 +1,4 @@
 install_dependencies: false
-vectorizer_exist: false
+vectorizer_exist: true
 df_exist: true
-minimize_dataset: false
+minimize_dataset: true
