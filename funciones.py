@@ -5,10 +5,34 @@ import pandas as pd
 
 import matplotlib.pyplot as plt
 import seaborn as sns
+import re
+from nltk.tokenize import word_tokenize
+from nltk.stem import SnowballStemmer
+from functools import reduce
+import string
 
 #Factor de Inflación de la Varianza VIF
 from statsmodels.stats.outliers_influence import variance_inflation_factor
 
+def pre_process(text):
+  text = str(text)
+  text = text.lower()
+  text = re.sub(r'\d+', '', text)
+  text = re.sub('\[.*?\]', '', text) #removes HTML tags
+  text = re.sub('https?://\S+|www\.\S+', '', text) #removes url
+  text = re.sub('[%s]' % re.escape(string.punctuation),'',text) #removes punctuations
+  text = re.sub(r'[^\w\s]\d+', '', text)
+  return text
+
+def tokenize(text):
+    return word_tokenize(text)
+
+def stem(tokens):
+    stemmer = SnowballStemmer('english')
+    return str(reduce(lambda x, y: x + " " + stemmer.stem(y), tokens, ""))
+
+def process(text):
+    return stem(tokenize(pre_process(text)))
 
 # Función para graficar atributos en barras, pair plot o box-plot
 def multiple_plot(ncols, data, columns, target_var, plot_type, title, rot): 
