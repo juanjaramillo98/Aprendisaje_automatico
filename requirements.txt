@@ -8,3 +8,4 @@ swifter
 seaborn
 scikit-learn
 statsmodels
+skplt
