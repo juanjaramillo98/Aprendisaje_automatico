@@ -5,3 +5,6 @@ nltk
 joblib
 ipympl
 swifter
+seaborn
+scikit-learn
+statsmodels
